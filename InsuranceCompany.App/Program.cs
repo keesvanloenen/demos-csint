@@ -43,24 +43,29 @@ internal class Program
             Customer = new Customer("Namdar Abdulrahman"),
         };
 
+        var employee1 = new Employee { Name = "Eva" };
+        var employee2 = new Employee { Name = "Toon" };
+
         Console.WriteLine($"Insurance: {insurance.Code}");
         Console.WriteLine($"Customer: {insurance.Customer.Name}");
 
         // SUBSCRIBE !!!
-        insurance.ClaimSubmitted += MethodOfAnInterestedSubscriber;
+        insurance.ClaimSubmitted += employee1.OnClaimSubmitted!;
+        insurance.ClaimSubmitted += employee2.OnClaimSubmitted!;
 
         // Process claims
         insurance.ProcessClaim(3000m, "Car repair after heavy collision");
-        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C}");
+        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C} (🕵️: { insurance.IsRisky})");
+
 
         insurance.ProcessClaim(2500m, "Replacing parts");
-        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C}");
+        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C} (🕵️: {insurance.IsRisky})");
+
+        insurance.ProcessClaim(1001m, "Connected wrongly");
+        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C} (🕵️: {insurance.IsRisky})");
     }
 
-    private static void MethodOfAnInterestedSubscriber(object sender, ClaimArgs e)
-    {
-        Console.WriteLine($"🚨 Insurance {((Insurance)sender).Code}: {e.Amount:C} - {e.Description}");
-    }
+
     private static void DemoUserDefinedOperators()
     {
         var amount1 = new Amount(150.34m);

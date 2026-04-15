@@ -22,7 +22,9 @@ public class Insurance
         if (amount > 1000)
         {
             var args = new ClaimArgs { Amount = amount, Description = description };
-            ClaimSubmitted?.Invoke(this, args);
+            // ClaimSubmitted?.Invoke(this, args);
+            OnClaimSubmitted(args);
+
 
             //if (ClaimSubmitted is null)
             //{
@@ -32,6 +34,11 @@ public class Insurance
             //ClaimSubmitted(this, "Warning: Amount above 1000€");
             
         }
+    }
+
+    protected virtual void OnClaimSubmitted(ClaimArgs args)
+    {
+        ClaimSubmitted?.Invoke(this, args);
     }
 
     public void Deconstruct(out string? code, out Customer? customer)
