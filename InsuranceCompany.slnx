@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Documents/Documents.csproj" Id="78eaf706-83c5-4f1d-9842-8d0317387be1" />
+  <Project Path="InsuranceCompany.App/InsuranceCompany.App.csproj" />
+  <Project Path="QuestionKelvin/QuestionKelvin.csproj" Id="f529b6f7-88df-4295-b579-08e05aa09b18" />
+</Solution>
