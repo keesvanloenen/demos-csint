@@ -1,5 +1,6 @@
 ﻿using InsuranceCompany.App.Insurances;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace InsuranceCompany.App;
@@ -27,11 +28,39 @@ internal class Program
         //DemoPatternMatching();
         //DemoTypeConversions();
         //DemoRealConversions();
-        DemoUserDefinedConversions();
-        DemoUserDefinedOperators();
+        //DemoUserDefinedConversions();
+        //DemoUserDefinedOperators();
+
+        DemoEvents();
 
     }
 
+    private static void DemoEvents()
+    {
+        var insurance = new CarInsurance
+        {
+            Code = "AUTO-001",
+            Customer = new Customer("Namdar Abdulrahman"),
+        };
+
+        Console.WriteLine($"Insurance: {insurance.Code}");
+        Console.WriteLine($"Customer: {insurance.Customer.Name}");
+
+        // SUBSCRIBE !!!
+        insurance.ClaimSubmitted += MethodOfAnInterestedSubscriber;
+
+        // Process claims
+        insurance.ProcessClaim(3000m, "Car repair after heavy collision");
+        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C}");
+
+        insurance.ProcessClaim(2500m, "Replacing parts");
+        Console.WriteLine($"Total paid out: {insurance.PaidClaims:C}");
+    }
+
+    private static void MethodOfAnInterestedSubscriber(object sender, ClaimArgs e)
+    {
+        Console.WriteLine($"🚨 Insurance {((Insurance)sender).Code}: {e.Amount:C} - {e.Description}");
+    }
     private static void DemoUserDefinedOperators()
     {
         var amount1 = new Amount(150.34m);
