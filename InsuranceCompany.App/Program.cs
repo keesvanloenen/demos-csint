@@ -1,6 +1,4 @@
 ﻿using InsuranceCompany.App.Insurances;
-using System.Collections;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace InsuranceCompany.App;
@@ -30,8 +28,69 @@ internal class Program
         //DemoRealConversions();
         //DemoUserDefinedConversions();
         //DemoUserDefinedOperators();
+        //DemoEvents();
 
-        DemoEvents();
+        DemoGenericMethods();
+        //DemoGenericClass();
+
+    }
+
+    private static void DemoGenericClass()
+    {
+        MyList<Damage> damageCollection =
+        [
+            new ("A", 1m, DateTime.Now),
+            new ("B", 1m, DateTime.Now),
+            new ("C", 1m, DateTime.Now),
+            new ("D", 1m, DateTime.Now),
+        ];
+
+
+        Console.WriteLine(damageCollection[3].Description);
+        Console.WriteLine(damageCollection.Count);
+    }
+
+    private static void DemoGenericMethods()
+    {
+        int[] values = [10, 20, 30];
+        string[] words = ["Alpha", "Bravo"];
+        Damage[] damages =
+        [
+            new ("A", 10m, DateTime.Now),
+            new ("B", 30m, DateTime.Now),
+            new ("C", 20m, DateTime.Now),
+        ];
+
+        var highestElement = GetHighest(damages);
+        Console.WriteLine(highestElement);
+    }
+
+    //private static T GetFirstElement<T>(T[] values)
+    //{
+    //    return values[0];
+    //}
+
+    private static T GetHighest<T>(T[] values)
+        where T : IComparable<T>
+    {
+        if (values.Length == 0)
+        {
+            throw new ArgumentException();
+        }
+
+        T highestValue = values[0];
+
+        for (var i = 0; i < values.Length; i++)
+        {
+            //if (values[i] > highestValue) // Error
+
+            if (values[i].CompareTo(highestValue) > 0)
+            {
+                highestValue = values[i];
+            }
+        }
+
+        return highestValue;
 
     }
 

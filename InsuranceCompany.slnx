@@ -1,5 +1,9 @@
 <Solution>
+  <Project Path="../../CSINT-demos/code-demos/Delegates/delegates-exercise/delegates-exercise.csproj" />
+  <Project Path="CovarianceContravariance/CovarianceContravariance.csproj" Id="4a6ea70c-97ec-4f97-a1e6-7f0607cfea33" />
+  <Project Path="Delegates.App/Delegates.App.csproj" />
   <Project Path="Documents/Documents.csproj" Id="78eaf706-83c5-4f1d-9842-8d0317387be1" />
+  <Project Path="event-exercise/event-exercise.csproj" />
   <Project Path="InsuranceCompany.App/InsuranceCompany.App.csproj" />
   <Project Path="QuestionKelvin/QuestionKelvin.csproj" Id="f529b6f7-88df-4295-b579-08e05aa09b18" />
 </Solution>
